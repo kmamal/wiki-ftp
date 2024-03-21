@@ -7,16 +7,12 @@
     "url": "git+ssh://git@github.com:kmamal/wiki-ftp.git"
   },
   "license": "MIT",
+  "bin": "./bin/wiki-ftp",
   "main": "./src/index.js",
   "exports": "./src/index.js",
-  "scripts": {
-    "test": "npx @kmamal/testing",
-    "update-exports": "node ./scripts/update-exports.mjs"
-  },
   "dependencies": {
-    "@kmamal/util": "^0.2.0"
-  },
-  "devDependencies": {
-    "@kmamal/testing": "^0.0.30"
+    "argparse": "^2.0.1",
+    "ftp-srv": "^4.6.3",
+    "mw.js": "^3.1.0"
   }
 }

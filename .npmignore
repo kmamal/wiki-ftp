@@ -3,4 +3,3 @@ scripts
 **/*.benchmark.js
 **/testing/
 **/_*
-package.json~

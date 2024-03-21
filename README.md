@@ -4,3 +4,8 @@
 [![Dependencies](https://img.shields.io/librariesio/release/npm/@kmamal/wiki-ftp)](https://libraries.io/npm/@kmamal%2Fwiki-ftp)
 [![Count](https://badgen.net/bundlephobia/dependency-count/@kmamal/wiki-ftp)](https://bundlephobia.com/package/@kmamal/wiki-ftp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+- High-volume (bot) access
+- Edit existing pages
+- Create, edit, and move pages
+- Delete pages, revisions, and log entries

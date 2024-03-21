@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+
+
+let terminate
+process.on('SIGINT', () => {
+	if (!terminate) { process.exit(128) }
+	terminate().then(() => { process.exit(128) })
+	terminate = null
+})
+
+
+const Backends = require('../src/backends')
+
+const args = (() => {
+	const Argparse = require('argparse')
+
+	const parser = new Argparse.ArgumentParser({
+		description: "Expose wiki pages as an FTP dir",
+		add_help: true, // eslint-disable-line camelcase
+	})
+
+	parser.add_argument('-v', '--version', {
+		action: 'version',
+		version: `${parser.prog} v${require('../package.json').version}`,
+		help: "Print version and exit",
+	})
+
+	parser.add_argument('--port', {
+		help: "Port the FTP server will listen to",
+		default: 21,
+	})
+
+	parser.add_argument('--backend', {
+		help: "Wiki API to target",
+		choices: Object.keys(Backends),
+		default: 'mediawiki',
+	})
+
+	parser.add_argument('--url', {
+		help: "URL for the wiki API",
+		required: true
+	})
+
+	return parser.parse_args()
+})()
+
+
+const { startServer } = require('../src')
+const backend = Backends[args.backend]
+
+startServer({
+	backend,
+	port: args.port,
+	url: args.url,
+}).then((fn) => {
+	terminate = fn
+})
